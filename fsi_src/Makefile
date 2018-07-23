@@ -1,0 +1,81 @@
+FepgLib        = ./libs
+#====================================================================
+FEPG_INCLUDE_DIR = -I./include
+#
+# Fortran compiler
+#
+FC_GENERIC      = f77
+FC_SUN4         = f77
+FC_SOLARIS      = f77
+FC_SGI          = f77
+FC_DEC          = f77
+FC_SGIM4        = f77
+FC_SGI10K  	= f77
+FC_I860         = if77
+FC_HP           = f77
+FC_SUNMOS	= sif77
+FC_NCUBE        = ncc
+FC_SP2          = mpxlf
+FC_T3E          = f90
+FC_LINUX        = mpif77
+FC_TFLOP        = pgf77 -cougar
+
+#
+# Compilation flags
+#
+CFLAGS_GENERIC = -O
+CFLAGS_SUN4   = -O2 -vc -Xc
+CFLAGS_SOLARIS= -O -vc
+CFLAGS_SGI    = -O2 -n32
+CFLAGS_SGIM4  = -O  -n32
+CFLAGS_SGI10K = -O  -64 -r10000 # 64 bit mips processors (R10000)
+CFLAGS_DEC    = -O
+CFLAGS_I860   = -O4
+CFLAGS_HP     = -O4
+CFLAGS_SUNMOS = -O4
+CFLAGS_NCUBE  = -O
+CFLAGS_SP2    = -O2
+CFLAGS_T3E    = -O3 -DT3E
+CFLAGS_LINUX  = -O2
+CFLAGS_TFLOP  = -O3
+
+FFLAGS_GENERIC = -O
+FFLAGS_SUN4   = -O2
+FFLAGS_SOLARIS= -O2
+FFLAGS_SGI    = $(CFLAGS_SGI)
+FFLAGS_SGIM4  = $(CFLAGS_SGIM4)
+FFLAGS_SGI10K = $(CFLAGS_SGI10K)
+FFLAGS_DEC    = $(CFLAGS_DEC)
+FFLAGS_I860   = $(CFLAGS_I860)
+FFLAGS_HP     = -O
+FFLAGS_SUNMOS = $(CFLAGS_SUNMOS)
+FFLAGS_NCUBE  = $(CFLAGS_NCUBE)
+FFLAGS_SP2    = $(CFLAGS_SP2)
+FFLAGS_T3E    = -O3 -dp
+FFLAGS_LINUX  = -O2
+#FFLAGS_LINUX  = -ffixed-line-length-none -m64
+FFLAGS_LINUX  = -132
+FFLAGS_TFLOP  = -O3
+
+FC              = $(FC_LINUX)
+FFLAGS          = $(FFLAGS_LINUX)
+
+#=======================================================
+# Source file
+SRC = mpimain.f bftm.f bfts.f bladeb.f bladebg.f blade.f bound.f cpcoor0.f cpcoore.f cpunodd.f cpunod.f efsia.f efsib.f efsic.f fsim.f fsis.f getpart.f inertia.f laplace.f mfsia.f mfsic.f mufsia.f mufsib.f mufsic.f partition.f sfsia.f sfsic.f sgetpart.f spart.f starta.f startc.f ufsia.f ufsic.f partition0.f
+
+OBJ = $(SRC:.f=.o)
+
+#####################################
+# Define implicit compilation rules #
+#####################################
+
+%.o:%.f
+	$(FC_LINUX) $(FFLAGS) -c $< ${FEPG_INCLUDE_DIR}
+
+fsi: $(OBJ)
+	@echo "Building $@ ........... "
+	${FC_LINUX} -o $@ $(OBJ) ${FepgLib}/libfepg.a ${FepgLib}/libmetis.a ${FepgLib}/libaztec.a -lmpich
+
+clean :
+	rm *.o fsi

@@ -1,0 +1,6 @@
+      noptions(AZ_max_iter)=100000
+      params(AZ_tol) = 1.0e-10
+      noptions(AZ_solver) = AZ_bicgstab
+      noptions(AZ_precond) = AZ_sym_GS
+      noptions(AZ_poly_ord) = 5
+      noptions(AZ_conv) = AZ_noscaled

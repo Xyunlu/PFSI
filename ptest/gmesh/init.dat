@@ -1,0 +1,45 @@
+4.349 14.22  4.35   0.0    1.841651   0.0   1.041  0.015  3.683302  0.004  0  1.5  0.5  20
+10    10     12     2      6     30     10    10    10
+1.25  0.005  1.5    0.005
+1.d0  9.d-7  0.9d9  0.384  1.d3  1280   9.8   1.d0
+0     1.d6
+0     1      50.d0
+1     0.001  1    0.003  2   10
+0
+3
+
+
+xmax,ymax,zmax,xo,yo,zo,radius,width,thick,radaxis,angle0(deg),radart_mult,ratiol,bladeang
+nx,nz,ns,npt,nct,nsc,naxis,nyi,nyo
+ai,bi,ao,bo
+u_in(m/s),visc_f(m^2/s),mu_s(kg/ms^2),pv,denf(kg/m^3),dens(kg/m^3),g(m/s^2),omega0(rad/s)
+index_point_axis(1:Y,0:N)    spring4axis
+id4Lshap(1:Y,0:N)   id4curve(1:Y,0:N)    amplification
+iarc,arcrad_outcorner,narc_outcorner,arcrad_incorner,narc_incorner,mspline
+id4upsidedown (Rotate about 0: Y-axis; 1: Z-axis; -1: X-axis)
+Index4problem: 0: Model Problem
+               1: Kunming Project (turbine's size channel)
+               2: Kunming Project (long channel)
+               3: Kunming Project (with cylindrical axis)
+
+
+
+CFD test:
+2.d-1   1.d-3   1.d12   0.4     1.d3     1.d6     0
+
+CSM test:
+0.d0    1.d-3   0.5d6   0.4     1.d3     1.d3     2
+
+FSI test:
+2.d-1   1.d-3   0.5d6   0.4     1.d3     1.d3     0
+1.d0    1.d-3   0.5d6   0.4     1.d3     10.d3    0
+2.d0    1.d-3   2.d6    0.4     1.d3     1.d3     0
+
+
+Coarse:
+10    10     12     2      6     30     10    10    10
+10    10     16     5      6     30     10    10    10
+
+
+Fine:
+20    20     18     14     8     80     20    20    20 

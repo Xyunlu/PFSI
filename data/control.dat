@@ -1,0 +1,10 @@
+1.d-6   20    1.d-6     10      0.9
+10              
+1
+1.d-2   1.d-2
+
+
+err     numstep     err_mesh     numstep_mesh    relaxation_FixedPointIteration
+fill-in number of ILU preconditioner
+time interval to save the files
+penalty of Q1Q1 element for pressure stabilization; penalty for SUPG
